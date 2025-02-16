@@ -20,7 +20,7 @@ struct ContentView: View {
     
     //default wakeUp time from 5am
     //use computed property referencing 5am of the current day
-    //static variable so is belings to the ContentView struct itself rather than one single instance  
+    //static variable so is belings to the ContentView struct itself rather than one single instance
     static var defaultWakeTime: Date{
         var components = DateComponents()
         components.hour = 5
@@ -32,27 +32,22 @@ struct ContentView: View {
         NavigationStack{
             Form{
                 
-                VStack(alignment: .leading, spacing: 0){
-                    Text("when do u wake up?")
-                        .font(.headline)
+                Section("when do u wake up?"){
                     
                     DatePicker("Enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                 }
                 
-                VStack(alignment: .leading, spacing: 0){
-                    Text("Desired amount of sleep:")
-                        .font(.headline)
-                    
+                Section("Desired amount of sleep:"){
                     Stepper("\(sleepAmount.formatted())", value: $sleepAmount, in: 4...12, step: 0.5)
                 }
-                
-                VStack(alignment: .leading, spacing: 0){
-                    Text("Daily coffee intake")
-                        .font(.headline)
                     
+                    
+                Section("Daily coffee intake"){
                     Stepper("^[\(coffeeAmount) cup](inflect: true)", value: $coffeeAmount, in: 1...20) //tells SwiftUI that "cup" needts to be pluralised to match whatever is inside coffeAmount variable
                 }
+                
+
                 .padding()
                 
                 
